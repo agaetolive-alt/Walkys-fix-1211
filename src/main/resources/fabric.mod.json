@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "walksy-optimizer",
+  "version": "1.0.0",
+  "name": "Walksy Crystal Optimizer",
+  "description": "1.21.11 port for crystals",
+  "authors": ["HT4"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["walksy.optimizer.WalksyCrystalOptimizerMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.10",
+    "minecraft": "1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
