@@ -8,11 +8,11 @@
   "license": "MIT",
   "environment": "client",
   "entrypoints": {
-    "client": ["walksy.optimizer.WalksyCrystalOptimizer"]
+       "client": ["walksy.optimizer.WalkysCrystalOptimizer"]
   },
   "depends": {
-    "fabricloader": ">=0.16.10",
-    "minecraft": "1.21.1",
+    "fabricloader": ">=0.18.3",
+    "minecraft": "1.21.11",
     "java": ">=21",
     "fabric-api": "*"
   }
