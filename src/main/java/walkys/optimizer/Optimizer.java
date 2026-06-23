@@ -3,11 +3,9 @@ package walksy.optimizer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.network.packet.c2s.play.PlayerInteractBlockC2SPacket;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.BlockPos;
 
 public class Optimizer {
     public static void onTick(MinecraftClient client) {
@@ -23,10 +21,10 @@ public class Optimizer {
         
         BlockHitResult blockHit = (BlockHitResult) hit;
         
-        // 1.21.11 FIX: Use interactionManager to bypass cooldown instead of private field
+        // 1.21.11 BYPASS: This method ignores cooldown internally
         client.interactionManager.interactBlock(client.player, Hand.MAIN_HAND, blockHit);
         
-        // Cancel vanilla right click so it doesn't double-place
+        // Stop vanilla from also placing and causing double-place
         client.options.useKey.setPressed(false);
     }
 }
