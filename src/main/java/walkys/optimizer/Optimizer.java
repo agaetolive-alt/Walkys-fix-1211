@@ -21,10 +21,11 @@ public class Optimizer {
         
         BlockHitResult blockHit = (BlockHitResult) hit;
         
-        // 1.21.11 BYPASS: This method ignores cooldown internally
+        // Send packet directly, bypass client cooldown
         client.interactionManager.interactBlock(client.player, Hand.MAIN_HAND, blockHit);
+        client.player.swingHand(Hand.MAIN_HAND);
         
-        // Stop vanilla from also placing and causing double-place
+        // Cancel vanilla input so it doesn't double-place with delay
         client.options.useKey.setPressed(false);
     }
 }
