@@ -1,5 +1,7 @@
 package walksy.optimizer;
 
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.entity.Entity;
@@ -13,6 +15,9 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.RaycastContext;
+import net.minecraft.world.World;
 
 public class Optimizer {
     private final MinecraftClient client = MinecraftClient.getInstance();
@@ -66,15 +71,20 @@ public class Optimizer {
         if (!this.client.player.getMainHandStack().isOf(Items.END_CRYSTAL)) {
             return;
         }
-        BlockHitResult hit = Raycast.cast(client, 4.5);
-        if (hit == null) {
+        
+        // Replaced Raycast.cast() with vanilla raycast
+        BlockHitResult hit = raycast(4.5);
+        if (hit == null || hit.getType() != HitResult.Type.BLOCK) {
             return;
         }
+        
         BlockPos pos = hit.getBlockPos();
-        if (WorldContext.isObsidianOrBedrock(this.client.world, pos)) {
+        // Replaced WorldContext.isObsidianOrBedrock()
+        if (isObsidianOrBedrock(this.client.world, pos)) {
             this.client.interactionManager.interactBlock(client.player, Hand.MAIN_HAND, hit);
 
-            if (WorldContext.canPlaceCrystal(client.world, pos)) {
+            // Replaced WorldContext.canPlaceCrystal()
+            if (canPlaceCrystal(client.world, pos.up())) {
                 this.client.player.swingHand(Hand.MAIN_HAND);
             }
         }
@@ -97,18 +107,37 @@ public class Optimizer {
         return this.hitCount < this.getPacketLimit();
     }
 
-    //I don't even remember what this does...
     private int getPacketLimit() {
         int ping = this.getPing();
         return (ping < 50) ? 1 : 2;
     }
 
-    //probably taken from meteor
     private int getPing() {
         if (client.getNetworkHandler() == null || this.client.player == null) {
             return 0;
         }
         PlayerListEntry entry = client.getNetworkHandler().getPlayerListEntry(client.player.getUuid());
         return entry != null ? entry.getLatency() : 0;
+    }
+
+    // REPLACEMENT FOR Raycast.cast()
+    private BlockHitResult raycast(double distance) {
+        Vec3d start = client.player.getCameraPosVec(1.0f);
+        Vec3d rotation = client.player.getRotationVec(1.0f);
+        Vec3d end = start.add(rotation.multiply(distance));
+        return client.world.raycast(new RaycastContext(start, end, RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, client.player));
+    }
+
+    // REPLACEMENT FOR WorldContext.isObsidianOrBedrock()
+    private boolean isObsidianOrBedrock(World world, BlockPos pos) {
+        BlockState state = world.getBlockState(pos);
+        return state.isOf(Blocks.OBSIDIAN) || state.isOf(Blocks.BEDROCK);
+    }
+
+    // REPLACEMENT FOR WorldContext.canPlaceCrystal()
+    private boolean canPlaceCrystal(World world, BlockPos pos) {
+        BlockState state = world.getBlockState(pos);
+        BlockState below = world.getBlockState(pos.down());
+        return state.isAir() && (below.isOf(Blocks.OBSIDIAN) || below.isOf(Blocks.BEDROCK));
     }
 }
