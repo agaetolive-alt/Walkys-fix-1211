@@ -6,11 +6,11 @@
   "description": "Crystal Optimizer for 1.21.11",
   "authors": ["Walksy"],
   "license": "MIT",
-  "icon": "assets/walksy-optimizer/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": ["walksy.optimizer.WalkysCrystalOptimizer"]
   },
+  "mixins": ["walksy.mixin.json"],
   "depends": {
     "fabricloader": ">=0.16.0",
     "minecraft": "~1.21.11",
