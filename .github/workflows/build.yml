@@ -10,7 +10,8 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
       - uses: gradle/gradle-build-action@v2
-      - run: gradle build
+      - run: ./gradlew remapJar --info
+      - run: ls -lh build/libs/ && unzip -l build/libs/*.jar | head -n 100
       - uses: actions/upload-artifact@v4
         with:
           name: walksy-1.21.11-fixed
