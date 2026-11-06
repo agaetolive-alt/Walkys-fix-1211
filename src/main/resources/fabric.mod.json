@@ -3,12 +3,15 @@
   "id": "walksy-optimizer",
   "version": "1.0.0",
   "name": "Walksy Crystal Optimizer",
-  "description": "Walksy Crystal Optimizer Fixed for 1.21.11",
+  "description": "Walksy Crystal Optimizer Rebuilt 100% for 1.21.11",
   "authors": [
     "Walksy"
   ],
   "license": "MIT",
   "environment": "client",
+  "mixins": [
+    "walksy.mixin.json"
+  ],
   "entrypoints": {
     "client": [
       "walksy.optimizer.WalkysCrystalOptimizer"
