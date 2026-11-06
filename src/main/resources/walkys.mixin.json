@@ -6,6 +6,9 @@
   "mixins": [
     "MinecraftClientAccessor"
   ],
+  "client": [
+    "MinecraftClientAccessor"
+  ],
   "injectors": {
     "defaultRequire": 1
   }
