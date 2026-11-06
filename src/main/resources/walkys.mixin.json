@@ -3,8 +3,8 @@
   "minVersion": "0.8",
   "package": "walksy.optimizer.mixin",
   "compatibilityLevel": "JAVA_21",
-  "client": [
-    "MinecraftClientMixin"
+  "mixins": [
+    "EndCrystalRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
