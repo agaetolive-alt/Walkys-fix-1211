@@ -1,16 +1,9 @@
-package walksy.optimizer;
+package walksy.crystal;
 
-import net.fabricmc.api.ClientModInitializer;
-
-public class WalksyCrystalOptimizer implements ClientModInitializer {
-    private static Optimizer optimizer;
-
-    @Override
-    public void onInitializeClient() {
-        optimizer = new Optimizer();
-    }
-
-    public static Optimizer getOptimizer() {
-        return optimizer;
-    }
+public class WalksyCrystalOptimizer {
+    public static final String MOD_NAME = "Walkys Crystal Optimizer";
+    public static boolean ENABLED = true;
+    // OG Walkys = 0, no delay
+    public static int PLACE_DELAY_TICKS = 0;
+    public static int ticksSinceLastPlace = 0;
 }
