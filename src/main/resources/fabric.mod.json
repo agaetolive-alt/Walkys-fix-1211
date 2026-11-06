@@ -1,25 +1,18 @@
 {
   "schemaVersion": 1,
-  "id": "walksy-optimizer",
+  "id": "walksy-crystal-optimizer",
   "version": "1.0.0",
-  "name": "Walksy Crystal Optimizer",
-  "description": "Walksy Crystal Optimizer Rebuilt 100% for 1.21.11",
-  "authors": [
-    "Walksy"
-  ],
+  "name": "Walkys Crystal Optimizer",
+  "description": "OG Walkys Crystal Optimizer rebuilt for 1.21.11 - Single Player / Offline only - 0 tick",
+  "authors": ["Walkys"],
   "license": "MIT",
   "environment": "client",
-  "mixins": [
-    "walksy.mixin.json"
-  ],
   "entrypoints": {
-    "client": [
-      "walksy.optimizer.WalkysCrystalOptimizer"
-    ]
+    "client": ["walksy.WalksyCrystalClient"]
   },
   "depends": {
-    "fabricloader": ">=0.18.3",
-    "minecraft": "1.21.11",
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.11",
     "fabric-api": "*"
   }
 }
