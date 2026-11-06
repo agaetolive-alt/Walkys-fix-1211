@@ -27,7 +27,6 @@ java {
 }
 
 loom {
-    splitEnvironmentSourceSets()
     mods {
         'walksy-optimizer' {
             sourceSet sourceSets.main
