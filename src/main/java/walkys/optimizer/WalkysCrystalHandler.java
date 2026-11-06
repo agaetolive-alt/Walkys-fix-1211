@@ -1,32 +1,28 @@
-package walksy.crystal;
+package walksy.optimizer;
 
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
 
 public class WalksyCrystalHandler {
-    public static void init() {
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (!WalksyCrystalOptimizer.ENABLED) return;
-            if (client.player == null || client.world == null) return;
 
-            // Safety: only single player / offline world
-            if (!client.isInSingleplayer()) return;
+    public static void onTick() {
+        MinecraftClient client = MinecraftClient.getInstance();
 
-            WalksyCrystalOptimizer.ticksSinceLastPlace++;
+        // ===== SAFETY CHECK START - DO NOT DELETE =====
 
-            boolean left = client.options.attackKey.isPressed();
-            boolean right = client.options.useKey.isPressed();
+        // 1. Is game even loaded?
+        if (client == null) return;
+        if (client.world == null) return;
+        if (client.player == null) return;
 
-            // OG Walkys style: you hold both buttons, you click every time
-            if (left && right) {
-                if (WalksyCrystalOptimizer.ticksSinceLastPlace >= WalksyCrystalOptimizer.PLACE_DELAY_TICKS) {
-                    if (client.interactionManager != null) {
-                        // Reset use cooldown so place goes through same tick - 0 delay
-                        client.itemUseCooldown = 0;
-                        WalksyCrystalOptimizer.ticksSinceLastPlace = 0;
-                    }
-                }
-            }
-        });
+        // 2. Manual OFF check - /walkysoptimizer off
+        if (!WalksyCrystalClient.ENABLED) return;
+
+        // ===== SAFETY CHECK END =====
+
+        // ===== YOUR OPTIMIZER CODE WOULD GO BELOW THIS LINE =====
+        // It will ONLY run if:
+        // - You typed /walkysoptimizer on
+        // If any check above fails, it NEVER reaches here.
+
     }
 }
