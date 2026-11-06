@@ -5,14 +5,36 @@ plugins {
 
 version = '1.0.0'
 group = 'walksy.optimizer'
+base {
+    archivesName = 'walksy-optimizer'
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    minecraft 'com.mojang:minecraft:1.21.1'
-    mappings 'net.fabricmc:yarn:1.21.1+build.3:v2'
-    modImplementation 'net.fabricmc:fabric-loader:0.16.10'
-    modImplementation 'net.fabricmc.fabric-api:fabric-api:0.116.0+1.21.1'
+    minecraft 'com.mojang:minecraft:1.21.11'
+    mappings 'net.fabricmc:yarn:1.21.11+build.1:v2'
+    modImplementation 'net.fabricmc:fabric-loader:0.18.3'
+    modImplementation 'net.fabricmc:fabric-api:fabric-api:0.140.0+1.21.11'
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+loom {
+    splitEnvironmentSourceSets()
+    mods {
+        'walksy-optimizer' {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
 }
