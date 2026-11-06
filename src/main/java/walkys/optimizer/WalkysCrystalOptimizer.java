@@ -4,8 +4,9 @@ import net.fabricmc.api.ClientModInitializer;
 
 public class WalkysCrystalOptimizer implements ClientModInitializer {
 
-    // OG Walksy Config - 100% same features
+    // OG Walksy Config
     public static boolean ENABLED = true;
+    public static boolean PVP_MACHINE_ENABLED = true;
     public static boolean CULL_HIDDEN_CRYSTALS = true;
     public static boolean OPTIMIZE_FAR_CRYSTALS = true;
     public static boolean DISABLE_CRYSTAL_BOBBING = true;
@@ -15,7 +16,7 @@ public class WalkysCrystalOptimizer implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        System.out.println("Walksy Crystal Optimizer Loaded - 1.21.11 - 100% Features Rebuilt!");
+        System.out.println("Walksy Crystal Optimizer Loaded - 1.21.11 - PVP Machine ON!");
     }
 
     public static boolean shouldRenderCrystal(double distanceSq) {
