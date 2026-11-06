@@ -4,7 +4,8 @@
   "package": "walksy.optimizer.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "EndCrystalRendererMixin"
+    "EndCrystalRendererMixin",
+    "NoCooldownMixin"
   ],
   "injectors": {
     "defaultRequire": 1
