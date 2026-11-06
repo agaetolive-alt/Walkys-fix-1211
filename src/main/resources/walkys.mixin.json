@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "walksy.optimizer.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "MinecraftClientAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
