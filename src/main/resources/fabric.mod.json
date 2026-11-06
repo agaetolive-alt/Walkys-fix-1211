@@ -3,18 +3,16 @@
   "id": "walksy-optimizer",
   "version": "1.0.0",
   "name": "Walksy Crystal Optimizer",
-  "description": "1.21.11 port for crystals",
-  "authors": ["HT4"],
+  "description": "Optimizes crystal rendering and performance",
+  "authors": ["Walksy"],
   "license": "MIT",
   "environment": "client",
   "entrypoints": {
-    "client": ["walksy.optimizer.WalksyCrystalOptimizer"]
+    "client": ["walksy.optimizer.WalkysCrystalOptimizer"]
   },
-  "mixins": [
-    "walksy-optimizer.mixins.json"
-  ],
+  "mixins": ["walksy-optimizer.mixins.json"],
   "depends": {
-    "fabricloader": ">=0.18.3",
+    "fabricloader": ">=0.16.0",
     "minecraft": "1.21.11",
     "java": ">=21",
     "fabric-api": "*"
