@@ -2,17 +2,24 @@
   "schemaVersion": 1,
   "id": "walksy-crystal-optimizer",
   "version": "1.0.0",
-  "name": "Walkys Crystal Optimizer",
-  "description": "OG Walkys Crystal Optimizer rebuilt for 1.21.11 - Single Player / Offline only - 0 tick",
-  "authors": ["Walkys"],
+  "name": "Walksy Crystal Optimizer",
+  "description": "Crystal optimizer for pojaver",
+  "authors": [
+    "agaetolive-alt"
+  ],
+  "contact": {},
   "license": "MIT",
+  "icon": "assets/walksy-crystal-optimizer/icon.png",
   "environment": "client",
   "entrypoints": {
-    "client": ["walksy.WalksyCrystalClient"]
+    "client": [
+      "walksy.optimizer.WalksyCrystalClient"
+    ]
   },
   "depends": {
     "fabricloader": ">=0.16.0",
     "minecraft": "~1.21.11",
+    "java": ">=21",
     "fabric-api": "*"
   }
 }
